@@ -1,9 +1,11 @@
-import { updates } from 'pear'
-
 const { origin } = new URL(import.meta.url)
 const mods = {} 
 
 export function hotmods (opts, listener) {
+  if (!global.Pear) return
+
+  const { updates } = global.Pear
+
   if (typeof opts === 'function') {
     listener = opts
     opts = {}
@@ -47,7 +49,6 @@ export function hotmods (opts, listener) {
 
     await listener(reloads)
   })
-
 }
 
 
