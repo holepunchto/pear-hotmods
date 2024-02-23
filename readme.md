@@ -33,12 +33,12 @@ Scenario where Preact framework is being used with prefresh for hot-reloading du
 application development:
 
 ```js
-import { config } from 'pear'
-if (config.dev && config.watch) {
+if (Pear.config.dev) {
   const { hotmods } = await import('pear-hotmods')
   await import('@prefresh/core')
   hotmods({ paths: ['/components'] }, (reloads) => {
-    for (const { original, previous, next } of reloads) {
+    for (const { original, previous, next, type, key } of reloads) {
+      console.log('Hot reloading - path:', key, 'operation:', type)
       window.__PREFRESH__.replaceComponent(original, next, true)
       window.__PREFRESH__.replaceComponent(previous, next, true)
     }

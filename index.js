@@ -16,14 +16,13 @@ export function hotmods (opts, listener) {
   const { paths = [] } = opts
 
   updates(async ({ diff }) => {
-    for (const update of diff) {
+    for (let update of diff) {
       if (typeof update === 'string') update = { type: 'update', key: update } // back compat
       const { type, key } = update
       if (key.endsWith('.js') === false) continue
       if (paths?.length && paths.some((path) => key.startsWith(path)) === false) continue
 
       mods[key] = mods[key] || {
-        type,
         original: null,
         previous: null,
         next: null,
@@ -39,6 +38,8 @@ export function hotmods (opts, listener) {
       mods[key].reloads = Array.from(new Set(Object.keys(mods[key].original)
         .concat(Object.keys(mods[key].previous))))
         .map((name) => ({
+          type,
+          key,
           original: mods[key].original[name],
           previous: mods[key].previous[name],
           next: mods[key]?.next[name]
@@ -50,7 +51,7 @@ export function hotmods (opts, listener) {
       return reloads
     }, [])))
 
-    await listener(reloads)
+    await listener(reloads, { })
   })
 }
 
