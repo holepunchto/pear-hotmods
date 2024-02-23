@@ -1,6 +1,6 @@
 {
-  "name": "@holepunchto/pear-hotmods",
-  "version": "1.0.2",
+  "name": "pear-hotmods",
+  "version": "1.0.0",
   "description": "The `pear-hotmods` library is a Pear ecosystem library.  It automatically reloads Module instances which can be passed on to a live-reload mechanism commonly supplied by frontend-frameworks.",
   "main": "index.js",
   "keywords": [],
@@ -12,5 +12,9 @@
   "bugs": {
     "url": "https://github.com/holepunchto/pear-hotmods/issues"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/holepunchto/pear-hotmods#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
