@@ -1,5 +1,5 @@
 const { origin } = new URL(import.meta.url)
-const mods = {} 
+const mods = {}
 
 export function hotmods (opts, listener) {
   if (!global.Pear) return
@@ -13,14 +13,17 @@ export function hotmods (opts, listener) {
   if (typeof listener !== 'function') {
     throw new Error('pear-hotmods: Supply a listener function')
   }
-  const { paths = [] }  = opts
+  const { paths = [] } = opts
 
   updates(async ({ diff }) => {
-    for (const key of diff) {
+    for (const update of diff) {
+      if (typeof update === 'string') update = { type: 'update', key: update } // back compat
+      const { type, key } = update
       if (key.endsWith('.js') === false) continue
       if (paths?.length && paths.some((path) => key.startsWith(path)) === false) continue
-      
+
       mods[key] = mods[key] || {
+        type,
         original: null,
         previous: null,
         next: null,
@@ -41,7 +44,7 @@ export function hotmods (opts, listener) {
           next: mods[key]?.next[name]
         }))
     }
-    
+
     const reloads = Array.from(new Set(Object.values(mods).reduce((reloads, hotmod) => {
       reloads.push(...hotmod.reloads)
       return reloads
@@ -50,6 +53,5 @@ export function hotmods (opts, listener) {
     await listener(reloads)
   })
 }
-
 
 export default hotmods
