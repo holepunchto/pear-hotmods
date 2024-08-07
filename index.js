@@ -48,7 +48,9 @@ export function hotmods (opts, listener) {
     }
 
     const reloads = Array.from(new Set(Object.values(mods).reduce((reloads, hotmod) => {
-      reloads.push(...hotmod.reloads)
+      if (Array.isArray(hotmod.reloads)) {
+        reloads.push(...hotmod.reloads)
+      }
       return reloads
     }, [])))
 
