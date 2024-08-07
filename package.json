@@ -1,6 +1,6 @@
 {
   "name": "pear-hotmods",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The `pear-hotmods` library is a Pear ecosystem library.  It automatically reloads Module instances which can be passed on to a live-reload mechanism commonly supplied by frontend-frameworks.",
   "main": "index.js",
   "keywords": [],
