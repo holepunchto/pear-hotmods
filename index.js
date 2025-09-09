@@ -16,7 +16,7 @@ export function hotmods (opts, listener) {
   const { paths = [] } = opts
 
   updates(async ({ diff }) => {
-    if (diff === null) return
+    if (!diff) return
     for (let update of diff) {
       if (typeof update === 'string') update = { type: 'update', key: update } // back compat
       const { type, key } = update
