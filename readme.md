@@ -1,6 +1,6 @@
 # pear-hotmods
 
-The `pear-hotmods` library is a Pear ecosystem library. 
+The `pear-hotmods` library is a Pear ecosystem library.
 It automatically reloads Module instances which can be passed on to a live-reload mechanism commonly supplied by frontend-frameworks.
 
 ## Install
@@ -21,11 +21,11 @@ import hotmods from 'pear-hotmods'
 
 ### `hotmods([options, ] listener <Async Function|Function>)`
 
-Call the `listener` function 
+Call the `listener` function
 
 **Options**
 
-* `paths` `<Array>` - paths allowlist to match against. Paths are drive keys: they are rooted to application root. If unset or empty array, matches against all paths.
+- `paths` `<Array>` - paths allowlist to match against. Paths are drive keys: they are rooted to application root. If unset or empty array, matches against all paths.
 
 ## Example
 
@@ -48,4 +48,4 @@ if (Pear.config.dev) {
 
 ## License
 
-Apache-2.0 
+Apache-2.0
