@@ -21,8 +21,12 @@ export function hotmods(opts, listener) {
       if (typeof update === 'string') update = { type: 'update', key: update } // back compat
       const { type, key } = update
       if (key.endsWith('.js') === false) continue
-      if (paths?.length && paths.some((path) => key.startsWith(path)) === false)
+      if (
+        paths?.length &&
+        paths.some((path) => key.startsWith(path)) === false
+      ) {
         continue
+      }
 
       mods[key] = mods[key] || {
         original: null,
